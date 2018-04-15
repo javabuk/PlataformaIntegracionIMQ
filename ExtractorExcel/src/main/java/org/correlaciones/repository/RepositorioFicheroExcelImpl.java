@@ -17,17 +17,21 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.correlaciones.model.Correlacion;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Repository;
 
-@Repository
+@Repository("repositorioFicheroExcelImpl")
 public class RepositorioFicheroExcelImpl implements RepositorioFicheroExcel {
 	
 	
 	@Value("${excel.rutaFichero}")
+	//private String rutaFicheroExcel = "D:\\temp\\120418.xlsx";
 	private String rutaFicheroExcel;
 	
-	
+	@Value("${dbUsername}")
+	private String dbUsername;
 	
 	private FileOutputStream ficheroExcel;
 	private Workbook libroTrabajoExcel;
@@ -38,7 +42,7 @@ public class RepositorioFicheroExcelImpl implements RepositorioFicheroExcel {
 
 	public RepositorioFicheroExcelImpl() throws IOException, EncryptedDocumentException, InvalidFormatException {
 		super();
-		leerFicheroExcel();		
+		//leerFicheroExcel();		
 	}
 	
 	private void leerFicheroExcel() throws IOException, EncryptedDocumentException, InvalidFormatException {
@@ -51,6 +55,18 @@ public class RepositorioFicheroExcelImpl implements RepositorioFicheroExcel {
 	 */
 	@Override
 	public List<Correlacion> recuperarCodigosLabImq(String codigoLaboratorio) {
+		try {
+			leerFicheroExcel();
+		} catch (EncryptedDocumentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InvalidFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		List<Correlacion> resultadoBusqueda = new ArrayList<Correlacion>();
 		
