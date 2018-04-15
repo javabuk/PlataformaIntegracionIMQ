@@ -1,3 +1,4 @@
+package org.correlaciones.configuration;
 
 
 import org.springframework.context.annotation.Bean;
