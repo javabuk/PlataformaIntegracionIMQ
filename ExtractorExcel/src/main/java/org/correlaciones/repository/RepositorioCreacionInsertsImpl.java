@@ -24,7 +24,7 @@ public class RepositorioCreacionInsertsImpl implements RepositorioCreacionInsert
 		String contenidoFichero = new String();
 		for (Iterator<Correlacion> iterator = datosCorrelaciones.iterator(); iterator.hasNext();) {
 			Correlacion correlacion = (Correlacion) iterator.next();
-			contenidoFichero += contenidoFichero.format(sqlcorrelaciones, correlacion.getCodigoA(), correlacion.getSistemaA(), correlacion.getTipoA(), correlacion.getCodigoB(), correlacion.getSistemaB(), correlacion.getTipoB());
+			contenidoFichero = contenidoFichero + String.format(sqlcorrelaciones, correlacion.getCodigoA(), correlacion.getSistemaA(), correlacion.getTipoA(), correlacion.getCodigoB(), correlacion.getSistemaB(), correlacion.getTipoB());
 		}
 		return contenidoFichero;
 	}
@@ -35,9 +35,9 @@ public class RepositorioCreacionInsertsImpl implements RepositorioCreacionInsert
 	@Override
 	public String generarInsertsCodigosA(List<Correlacion> datosCorrelaciones) {
 		String contenidoFichero = new String();
-		for (Iterator iterator = datosCorrelaciones.iterator(); iterator.hasNext();) {
+		for (Iterator<Correlacion> iterator = datosCorrelaciones.iterator(); iterator.hasNext();) {
 			Correlacion correlacion = (Correlacion) iterator.next();
-			contenidoFichero += contenidoFichero.format(sqlcodigos, correlacion.getCodigoA(), correlacion.getDescripcion(), correlacion.getSistemaA(), correlacion.getTipoA());
+			contenidoFichero = contenidoFichero + String.format(sqlcodigos, correlacion.getCodigoA(), correlacion.getDescripcion(), correlacion.getSistemaA(), correlacion.getTipoA());
 		}
 		return contenidoFichero;
 	}
@@ -48,9 +48,9 @@ public class RepositorioCreacionInsertsImpl implements RepositorioCreacionInsert
 	@Override
 	public String generarInsertsCodigosB(List<Correlacion> datosCorrelaciones) {
 		String contenidoFichero = new String();
-		for (Iterator iterator = datosCorrelaciones.iterator(); iterator.hasNext();) {
+		for (Iterator<Correlacion> iterator = datosCorrelaciones.iterator(); iterator.hasNext();) {
 			Correlacion correlacion = (Correlacion) iterator.next();
-			contenidoFichero += contenidoFichero.format(sqlcodigos, correlacion.getCodigoB(), correlacion.getDescripcion(), correlacion.getSistemaB(), correlacion.getTipoB());
+			contenidoFichero = contenidoFichero + String.format(sqlcodigos, correlacion.getCodigoB(), correlacion.getDescripcion(), correlacion.getSistemaB(), correlacion.getTipoB());
 		}
 		return contenidoFichero;
 	}
