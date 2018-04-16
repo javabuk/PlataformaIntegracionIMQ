@@ -1,0 +1,51 @@
+package org.correlaciones.repository;
+
+import java.util.Iterator;
+import java.util.List;
+
+import org.correlaciones.model.Correlacion;
+import org.springframework.stereotype.Repository;
+
+@Repository("RepositorioCreacionInsertsImpl")
+public class RepositorioCreacionInsertsImpl implements RepositorioCreacionInserts {
+	
+	/* (non-Javadoc)
+	 * @see org.correlaciones.repository.RepositorioCreacionInserts#generarInsertsCorrelaciones(java.util.List)
+	 */
+	@Override
+	public String generarInsertsCorrelaciones(List<Correlacion> datosCorrelaciones) {		
+		String contenidoFichero = new String();
+		for (Iterator<Correlacion> iterator = datosCorrelaciones.iterator(); iterator.hasNext();) {
+			Correlacion correlacion = (Correlacion) iterator.next();
+			contenidoFichero += contenidoFichero.format("INSERT INTO PSI_CORRELACIONES ( CODIGOA, SISTEMAA, TIPOA, CODIGOB, SISTEMAB, TIPOB) VALUES ( '%s', '%s', '%s', '%s', '%s', '%s' );%n", correlacion.getCodigoA(), correlacion.getSistemaA(), correlacion.getTipoA(), correlacion.getCodigoB(), correlacion.getSistemaB(), correlacion.getTipoB());
+		}
+		return contenidoFichero;
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.correlaciones.repository.RepositorioCreacionInserts#generarInsertsCodigosA(java.util.List)
+	 */
+	@Override
+	public String generarInsertsCodigosA(List<Correlacion> datosCorrelaciones) {
+		String contenidoFichero = new String();
+		for (Iterator iterator = datosCorrelaciones.iterator(); iterator.hasNext();) {
+			Correlacion correlacion = (Correlacion) iterator.next();
+			contenidoFichero += contenidoFichero.format("INSERT INTO PSI_CODIGOS (CODIGO, DESCRIPCION, SISTEMA, TIPO) VALUES ( '%s', '%s', '%s', '%s' );%n ", correlacion.getCodigoA(), correlacion.getDescripcion(), correlacion.getSistemaA(), correlacion.getTipoA());
+		}
+		return contenidoFichero;
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.correlaciones.repository.RepositorioCreacionInserts#generarInsertsCodigosB(java.util.List)
+	 */
+	@Override
+	public String generarInsertsCodigosB(List<Correlacion> datosCorrelaciones) {
+		String contenidoFichero = new String();
+		for (Iterator iterator = datosCorrelaciones.iterator(); iterator.hasNext();) {
+			Correlacion correlacion = (Correlacion) iterator.next();
+			contenidoFichero += contenidoFichero.format("INSERT INTO PSI_CODIGOS (CODIGO, DESCRIPCION, SISTEMA, TIPO) VALUES ( '%s', '%s', '%s', '%s' );%n ", correlacion.getCodigoB(), correlacion.getDescripcion(), correlacion.getSistemaB(), correlacion.getTipoB());
+		}
+		return contenidoFichero;
+	}
+
+}
