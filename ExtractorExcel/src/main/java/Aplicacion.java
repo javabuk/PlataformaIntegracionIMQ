@@ -1,4 +1,5 @@
 import java.util.List;
+import java.util.Scanner;
 
 import org.correlaciones.configuration.Configuracion;
 import org.correlaciones.model.CodigoCPT;
@@ -23,14 +24,26 @@ public class Aplicacion {
 		INFO33Repositorio repositorioBBDD = appContext.getBean("info33RepositorioImpl", INFO33Repositorio.class);
 		GestorPeticionesRepositorioImpl repositorioBBDDGestor = appContext.getBean("gestorPeticionesRepositorioImpl", GestorPeticionesRepositorioImpl.class);
 		
+		
+		// Recogemos la entrada por consola:
+		Scanner entradaConsola = new Scanner(System.in);
+		
+		System.out.println("El codigo del CPT:");
+		
+		String codigoCPT = entradaConsola.next();
+		
+		
 		try {
 			//servicio.generarFicherosTexto(RepositorioFicheroExcelImpl.CODIGOLABORATORIOAXPE);
 			//servicioGenerarFichero.generarFicheroSqlCorrelaciones("E:\\area\\FicheroCorrelacion.sql", RepositorioFicheroExcelImpl.CODIGOLABORATORIOAXPE);
-			List<CodigoCPT> codigos = repositorioBBDD.consultaCPT("28660-9");
+			List<CodigoCPT> codigos = repositorioBBDD.consultaCPT(codigoCPT);
 			System.out.println(codigos.size());
+			if(codigos.size()>0) {
+				System.out.println(codigos.get(0).toString());
+			}
 			
-			List<CodigoGestor> buscarCodigo = repositorioBBDDGestor.buscarCodigo("GLU", "MEDIKOSTA", "LAB");
-			System.out.println(buscarCodigo.size());
+			//List<CodigoGestor> buscarCodigo = repositorioBBDDGestor.buscarCodigo("GLU", "MEDIKOSTA", "LAB");
+			//System.out.println(buscarCodigo.size());
 			
 		} catch (Exception e) {
 			e.printStackTrace();
