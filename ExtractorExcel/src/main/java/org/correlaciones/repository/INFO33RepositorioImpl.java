@@ -7,13 +7,15 @@ import javax.sql.DataSource;
 
 import org.correlaciones.model.CodigoCPT;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 @Repository("info33RepositorioImpl")
 public class INFO33RepositorioImpl implements INFO33Repositorio {
 	
-	@Autowired
+	@Autowired()
+	@Qualifier("DataSourceINFO") 
 	  private DataSource dataSource;
 	  private JdbcTemplate jdbcTemplate;
 

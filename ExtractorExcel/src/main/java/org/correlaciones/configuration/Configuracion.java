@@ -27,13 +27,32 @@ public class Configuracion {
 	@Value("${sql.conexion.usuario}")
 	private String usuarioBBDD;
 	
-	@Bean
+	@Value("${sql.conexionGestor.cadena}")
+	private String cadenaConexionGestorBBDD;
+	
+	@Value("${sql.conexionGestor.usuario}")
+	private String usuarioGestorBBDD;
+	
+	@Value("${sql.conexionGestor.password}")
+	private String passwordGestorBBDD;
+	
+	@Bean(name="DataSourceINFO")
 	  public DataSource dataSource() {
 	      DriverManagerDataSource ds = new DriverManagerDataSource();
 	      ds.setDriverClassName(oracle.jdbc.driver.OracleDriver.class.getName());
 	      ds.setUrl(cadenaConexionBBDD);
 	      ds.setUsername(usuarioBBDD);
 	      ds.setPassword(usuarioBBDD);
+	      return ds;
+	  }
+	
+	@Bean(name="DataSourceGestorPeticiones")
+	  public DataSource dataSourceGestorPeticiones() {
+	      DriverManagerDataSource ds = new DriverManagerDataSource();
+	      ds.setDriverClassName(oracle.jdbc.driver.OracleDriver.class.getName());
+	      ds.setUrl(cadenaConexionGestorBBDD);
+	      ds.setUsername(usuarioGestorBBDD);
+	      ds.setPassword(passwordGestorBBDD);
 	      return ds;
 	  }
 
