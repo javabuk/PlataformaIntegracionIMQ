@@ -1,6 +1,9 @@
 import java.io.FileNotFoundException;
+import java.util.List;
 
 import org.correlaciones.configuration.Configuracion;
+import org.correlaciones.model.CodigoCPT;
+import org.correlaciones.repository.INFO33Repositorio;
 import org.correlaciones.repository.RepositorioFicheroExcelImpl;
 import org.correlaciones.services.GenerarFicheroServicioImpl;
 import org.correlaciones.services.SalidaFicheroSql;
@@ -17,12 +20,14 @@ public class Aplicacion {
 		
 		GenerarFicheroServicioImpl servicioGenerarFichero = appContext.getBean("generarFicheroServicioImpl", GenerarFicheroServicioImpl.class);
 		
+		INFO33Repositorio repositorioBBDD = appContext.getBean("info33RepositorioImpl", INFO33Repositorio.class);
+		
 		try {
 			//servicio.generarFicherosTexto(RepositorioFicheroExcelImpl.CODIGOLABORATORIOAXPE);
-			servicioGenerarFichero.generarFicheroSqlCorrelaciones("E:\\area\\FicheroCorrelacion.sql", RepositorioFicheroExcelImpl.CODIGOLABORATORIOAXPE);
-			
-			
-		} catch (FileNotFoundException e) {
+			//servicioGenerarFichero.generarFicheroSqlCorrelaciones("E:\\area\\FicheroCorrelacion.sql", RepositorioFicheroExcelImpl.CODIGOLABORATORIOAXPE);
+			List<CodigoCPT> codigos = repositorioBBDD.consultaCPT("28660-9");
+			System.out.println(codigos.size());
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
