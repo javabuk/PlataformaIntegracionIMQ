@@ -81,6 +81,12 @@ public class Correlacion {
 	public void setTipoB(String tipoB) {
 		this.tipoB = tipoB;
 	}
+
+	@Override
+	public String toString() {
+		return "Correlacion [codigoA=" + codigoA + ", codigoB=" + codigoB + ", descripcion=" + descripcion
+				+ ", sistemaA=" + sistemaA + ", sistemaB=" + sistemaB + ", tipoA=" + tipoA + ", tipoB=" + tipoB + "]";
+	}
 	
 	
 	

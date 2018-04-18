@@ -20,7 +20,7 @@ import org.correlaciones.model.Correlacion;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
 
-@Repository("repositorioFicheroExcelImpl")
+//@Repository("repositorioFicheroExcelImpl")
 public class RepositorioFicheroExcelImpl implements RepositorioFicheroExcel {
 	
 	
@@ -135,6 +135,12 @@ public class RepositorioFicheroExcelImpl implements RepositorioFicheroExcel {
 	
 	public String devolverDato() throws IOException {
 		return this.ficheroExcel.getFD().toString();
+	}
+
+	@Override
+	public List<Correlacion> recuperarCodigosCorrelaciones(String rutaFicheroExcel, String codigoLaboratorio) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 
