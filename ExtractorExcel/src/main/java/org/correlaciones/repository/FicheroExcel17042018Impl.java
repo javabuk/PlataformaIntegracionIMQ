@@ -15,12 +15,17 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.correlaciones.model.CodigoCPT;
 import org.correlaciones.model.Correlacion;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository("FicheroExcel17042018Impl")
 public class FicheroExcel17042018Impl implements RepositorioFicheroExcel {
 
+	@Autowired
+	private INFO33Repositorio repositorioINFO33;
+	
 	private FileOutputStream ficheroExcel;
 	private Workbook libroTrabajoExcel;
 
@@ -63,11 +68,26 @@ public class FicheroExcel17042018Impl implements RepositorioFicheroExcel {
 						int indiceColumna = cell.getColumnIndex();
 
 						if (indiceColumna == 0 ) {
-							datosCorrelacion.setCodigoA((Integer.toString((int) cell.getNumericCellValue())));			
+							datosCorrelacion.setCodigoA((Integer.toString((int) cell.getNumericCellValue())));
+						
+						}else if (indiceColumna == 1 ) {
+							if (cell.getCellType() == Cell.CELL_TYPE_STRING) {							
+								List<CodigoCPT> codigos = repositorioINFO33.consultaCPT(cell.getStringCellValue());
+								if (codigos.size()>0) {
+									datosCorrelacion.setDescripcion(codigos.get(0).getDescripcion());
+								}
+							}else if(cell.getCellType() == Cell.CELL_TYPE_NUMERIC) {
+								//System.out.println("No es texto");
+								List<CodigoCPT> codigos = repositorioINFO33.consultaCPT((Integer.toString((int) cell.getNumericCellValue())));
+								if (codigos.size()>0) {
+									datosCorrelacion.setDescripcion(codigos.get(0).getDescripcion());
+								}								
+							}
+							
 							cumpleCondiciones = true;
 						}else if (indiceColumna == 3 && cumpleCondiciones) {
 
-							if (cell.getNumericCellValue() == new Double(codigoLaboratorio).doubleValue()) {
+							//if (cell.getNumericCellValue() == new Double(codigoLaboratorio).doubleValue()) {
 								// System.out.println(cell.getNumericCellValue());
 								// datosCorrelacion.setCodigoA( (new
 								// Double(cell.getNumericCellValue()).toString()));
@@ -85,7 +105,7 @@ public class FicheroExcel17042018Impl implements RepositorioFicheroExcel {
 									datosCorrelacion.setSistemaB("AXPE");
 								}
 
-							}
+							//}
 						} else if (indiceColumna == 4 && cumpleCondiciones) {
 							datosCorrelacion.setCodigoB(cell.getStringCellValue());
 						} 
@@ -93,12 +113,14 @@ public class FicheroExcel17042018Impl implements RepositorioFicheroExcel {
 				}
 				if (cumpleCondiciones) {
 					contadorCumpleCondiciones++;
-					resultadoBusqueda.add(datosCorrelacion);					
+					resultadoBusqueda.add(datosCorrelacion);
+					//System.out.println("CodigoA: "+ datosCorrelacion.getCodigoA() + " CodigoB:" + datosCorrelacion.getCodigoB());
 				}
 				
 				
 			}
 			contador++;
+			System.out.println(contador );
 		}
 		return resultadoBusqueda;
 	}

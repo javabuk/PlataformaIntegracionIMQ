@@ -32,7 +32,8 @@ public class SalidaFicheroSqlImpl implements SalidaFicheroSql {
 	 */
 	@Override
 	public void generarFicherosTexto(   String label ) throws FileNotFoundException {
-		this.datosCorrelaciones = repositorioFichero.recuperarCodigosLabImq(label);
+		//this.datosCorrelaciones = repositorioFichero.recuperarCodigosLabImq(label);
+		this.datosCorrelaciones = repositorioFichero.recuperarCodigosCorrelaciones("E:\\Proyectos\\IMQ\\GestorPeticiones\\Subversion\\Correlaciones\\170418.xlsx", label);
 		this.label = label;
 		generarFicheroCorrelaciones();
 		generarFicheroCodigosA();

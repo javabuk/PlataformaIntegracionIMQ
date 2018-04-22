@@ -37,6 +37,8 @@ public class Aplicacion {
 //		String codigoCPT = entradaConsola.next();
 		
 		// E:\Proyectos\IMQ\GestorPeticiones\Subversion\Correlaciones\170418.xlsx
+		// 
+		// E:\Area
 		// 1703
 		System.out.println("Ruta del fichero excel:");
 		String rutaficheroExcel = entradaConsola.next();
@@ -55,17 +57,21 @@ public class Aplicacion {
 			//List<CodigoGestor> buscarCodigo = repositorioBBDDGestor.buscarCodigo("GLU", "MEDIKOSTA", "LAB");
 			//System.out.println(buscarCodigo.size());
 			
-			List<Correlacion> codigosCorrelaciones = repositorioFicheroExcel.recuperarCodigosCorrelaciones(rutaficheroExcel, codigoLaboratorio);
-			for (Correlacion correlacion : codigosCorrelaciones) {
-				System.out.println(correlacion.toString());
-			}
+//			List<Correlacion> codigosCorrelaciones = repositorioFicheroExcel.recuperarCodigosCorrelaciones(rutaficheroExcel, codigoLaboratorio);
+//			for (Correlacion correlacion : codigosCorrelaciones) {
+//				System.out.println(correlacion.toString());
+//			}
+			//servicio.generarFicherosTexto("1703");
 			
+			//servicioGenerarFichero.generarFicheroSqlCodigosB("E:\\Area\\FicherosCodigosB.sql", "103");
+			servicioGenerarFichero.generarFicheroSqlCodigosA("E:\\Area\\FicherosCodigosAA.sql", "103");
+			//servicioGenerarFichero.generarFicheroSqlCorrelaciones("E:\\Area\\FicherosCor.sql", "103");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		 
 		System.out.println("alguna operacion mas:");
-		String respuesta = entradaConsola.next();
+		//String respuesta = entradaConsola.next();
 
 	}
 

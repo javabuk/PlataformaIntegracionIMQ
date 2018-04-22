@@ -7,6 +7,7 @@ import javax.sql.DataSource;
 
 import org.correlaciones.model.CodigoCPT;
 import org.correlaciones.model.CodigoGestor;
+import org.correlaciones.model.Correlacion;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -32,5 +33,14 @@ public class GestorPeticionesRepositorioImpl {
 				  (rs, rowNum) -> new CodigoGestor(rs.getString("CODIGO"), rs.getString("DESCRIPCION"), rs.getString("TIPO"), rs.getString("IDSISTEMA")
 			));
 	}
+	
+	public List<Correlacion> buscarCorrelacion(String codigoA, String sistemaA, String tipoA, String codigoB, String sistemaB, String tipoB) {
+		return jdbcTemplate.query(
+				  "SELECT * FROM PSI_CORRELACIONES WHERE CODIGOA = ? AND SISTEMAA = ? AND TIPOA = ? AND CODIGOB = ? AND SISTEMAB = ? AND TIPOB = ? ",
+				  new Object[] { codigoA, sistemaA, tipoA, codigoB, sistemaB, tipoB },
+				  (rs, rowNum) -> new Correlacion(rs.getString("CODIGOA"), rs.getString("SISTEMAA"), rs.getString("TIPOA"), rs.getString("CODIGOB"), rs.getString("SISTEMAB"), rs.getString("TIPOB")
+			));
+	}
+	
 
 }
