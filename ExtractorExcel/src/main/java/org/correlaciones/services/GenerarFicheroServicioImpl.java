@@ -99,4 +99,45 @@ public class GenerarFicheroServicioImpl implements GenerarFicheroServicio {
 		crearFichero.close();
 	}
 
+	@Override
+	public void generarFicheroSqlCorrelacionesNuevas(String rutaFichero, String laboratorio)
+			throws FileNotFoundException {
+		PrintWriter crearFichero = generarFichero.crearFichero(rutaFichero);
+		List<Correlacion> recuperarCodigosLabImq = repositorioFicheroExcel.recuperarCodigosCorrelaciones("E:\\Proyectos\\IMQ\\GestorPeticiones\\Subversion\\Correlaciones\\ficheroCorrelaciones.xlsx",laboratorio);
+		List<Correlacion> correlacionesNuevas = new ArrayList<>();
+		for (Correlacion correlacion : recuperarCodigosLabImq) {
+			List<Correlacion> correlacionExistente = repositorioGestorPeticiones.buscarCorrelacion(correlacion.getCodigoA(), correlacion.getSistemaA(), "LAB", correlacion.getCodigoB(), correlacion.getSistemaB(), "LAB");
+			if(correlacionExistente==null || ( correlacionExistente!=null && correlacionExistente.size()==0 ) ) {				
+				System.out.println("No existe el código " + correlacion.getCodigoA() + " Sistema " + correlacion.getSistemaA() + " CodigoB " + correlacion.getCodigoB() + " SistemaB " + correlacion.getSistemaB());
+				correlacionesNuevas.add(correlacion);
+			}else {
+				System.out.println("Existe el código " + correlacion.getCodigoA() + " Sistema " + correlacion.getSistemaA() + " CodigoB " + correlacion.getCodigoB() + " SistemaB " + correlacion.getSistemaB());
+			}
+		}
+		String contenidoFichero = repositorioCreacionInserts.generarInsertsCorrelaciones(correlacionesNuevas);
+		crearFichero.println(contenidoFichero);
+		crearFichero.close();
+		
+	}
+
+	@Override
+	public void generarFicheroSqlCodigosANuevos(String rutaFichero, String laboratorio) throws FileNotFoundException {
+		PrintWriter crearFichero = generarFichero.crearFichero(rutaFichero);
+		List<Correlacion> recuperarCodigosLabImq = repositorioFicheroExcel.recuperarCodigosCorrelaciones("E:\\Proyectos\\IMQ\\GestorPeticiones\\Subversion\\Correlaciones\\ficheroCorrelaciones.xlsx",laboratorio);
+		List<Correlacion> codigosNuevos = new ArrayList<>();
+		for (Correlacion correlacion : recuperarCodigosLabImq) {
+			List<CodigoGestor> codigos = repositorioGestorPeticiones.buscarCodigo(correlacion.getCodigoA(), correlacion.getSistemaA(), "LAB");
+			if(codigos==null || ( codigos!=null && codigos.size()==0 ) ) {				
+				System.out.println("No existe el código " + correlacion.getCodigoA() + " Sistema " + correlacion.getSistemaA());
+				codigosNuevos.add(correlacion);
+			}else {
+				System.out.println("Existe el código " + correlacion.getCodigoA() + " Sistema " + correlacion.getSistemaA());
+			}
+		}
+		String contenidoFichero = repositorioCreacionInserts.generarInsertsCodigosA(codigosNuevos);
+		crearFichero.println(contenidoFichero);
+		crearFichero.close();
+		
+	}
+
 }

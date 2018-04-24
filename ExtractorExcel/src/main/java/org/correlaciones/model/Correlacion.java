@@ -9,23 +9,29 @@ public class Correlacion {
 	private String sistemaB;
 	private String tipoA;
 	private String tipoB;
-	
+	private String codCPT;
 	
 	
 	public Correlacion() {
 		super();		
 	}
 
-	public Correlacion(String codigoA, String sistemaA, String tipoA, String codigoB, String sistemaB, String tipoB) {
+	
+	
+	public Correlacion(String codigoA, String sistemaA, String tipoA, String codigoB, String sistemaB, String tipoB, String codCPT, String descripcion) {
 		super();
 		this.codigoA = codigoA;
-		this.sistemaA = sistemaA;
-		this.tipoA = tipoA;
 		this.codigoB = codigoB;
+		this.sistemaA = sistemaA;
 		this.sistemaB = sistemaB;
+		this.tipoA = tipoA;
 		this.tipoB = tipoB;
+		this.codCPT = codCPT;
+		this.descripcion = descripcion;
 	}
-	
+
+
+
 	public String getCodigoA() {
 		return codigoA;
 	}
@@ -82,12 +88,20 @@ public class Correlacion {
 		this.tipoB = tipoB;
 	}
 
+	public String getCodCPT() {
+		return codCPT;
+	}
+
+	public void setCodCPT(String codCPT) {
+		this.codCPT = codCPT;
+	}
+
 	@Override
 	public String toString() {
 		return "Correlacion [codigoA=" + codigoA + ", codigoB=" + codigoB + ", descripcion=" + descripcion
-				+ ", sistemaA=" + sistemaA + ", sistemaB=" + sistemaB + ", tipoA=" + tipoA + ", tipoB=" + tipoB + "]";
+				+ ", sistemaA=" + sistemaA + ", sistemaB=" + sistemaB + ", tipoA=" + tipoA + ", tipoB=" + tipoB
+				+ ", codCPT=" + codCPT + "]";
 	}
-	
-	
+
 	
 }

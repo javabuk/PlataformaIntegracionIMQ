@@ -63,7 +63,7 @@ public class SalidaFicheroSqlImpl implements SalidaFicheroSql {
 		for (Iterator iterator = datosCorrelaciones.iterator(); iterator.hasNext();) {
 			Correlacion correlacion = (Correlacion) iterator.next();
 			
-			contenidoFichero += contenidoFichero.format("INSERT INTO PSI_CODIGOS (CODIGO, DESCRIPCION, SISTEMA, TIPO) VALUES ( '%s', '%s', '%s', '%s' );%n ", correlacion.getCodigoA(), correlacion.getDescripcion(), correlacion.getSistemaA(), correlacion.getTipoA());
+			contenidoFichero += contenidoFichero.format("INSERT INTO PSI_CODIGOS (CODIGO, DESCRIPCION, IDSISTEMA, TIPO) VALUES ( '%s', '%s', '%s', '%s' );%n ", correlacion.getCodigoA(), correlacion.getDescripcion(), correlacion.getSistemaA(), correlacion.getTipoA());
 			
 		}
 		
@@ -79,7 +79,7 @@ public class SalidaFicheroSqlImpl implements SalidaFicheroSql {
 		for (Iterator iterator = datosCorrelaciones.iterator(); iterator.hasNext();) {
 			Correlacion correlacion = (Correlacion) iterator.next();
 			
-			contenidoFichero += contenidoFichero.format("INSERT INTO PSI_CODIGOS (CODIGO, DESCRIPCION, SISTEMA, TIPO) VALUES ( '%s', '%s', '%s', '%s' );%n ", correlacion.getCodigoB(), correlacion.getDescripcion(), correlacion.getSistemaB(), correlacion.getTipoB());
+			contenidoFichero += contenidoFichero.format("INSERT INTO PSI_CODIGOS (CODIGO, DESCRIPCION, IDSISTEMA, TIPO) VALUES ( '%s', '%s', '%s', '%s' );%n ", correlacion.getCodigoB(), correlacion.getDescripcion(), correlacion.getSistemaB(), correlacion.getTipoB());
 			
 		}
 		

@@ -17,5 +17,9 @@ public interface GenerarFicheroServicio {
 	public void generarFicheroSqlCodigosA(String rutaFichero, String laboratorio) throws FileNotFoundException;
 	
 	public void generarFicheroSqlCodigosB(String rutaFichero, String laboratorio) throws FileNotFoundException;
+	
+	public void generarFicheroSqlCorrelacionesNuevas(String rutaFichero, String laboratorio) throws FileNotFoundException;
+	
+	public void generarFicheroSqlCodigosANuevos(String rutaFichero, String laboratorio) throws FileNotFoundException;
 
 }

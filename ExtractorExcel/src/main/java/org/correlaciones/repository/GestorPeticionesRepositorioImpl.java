@@ -38,7 +38,7 @@ public class GestorPeticionesRepositorioImpl {
 		return jdbcTemplate.query(
 				  "SELECT * FROM PSI_CORRELACIONES WHERE CODIGOA = ? AND SISTEMAA = ? AND TIPOA = ? AND CODIGOB = ? AND SISTEMAB = ? AND TIPOB = ? ",
 				  new Object[] { codigoA, sistemaA, tipoA, codigoB, sistemaB, tipoB },
-				  (rs, rowNum) -> new Correlacion(rs.getString("CODIGOA"), rs.getString("SISTEMAA"), rs.getString("TIPOA"), rs.getString("CODIGOB"), rs.getString("SISTEMAB"), rs.getString("TIPOB")
+				  (rs, rowNum) -> new Correlacion(rs.getString("CODIGOA"), rs.getString("SISTEMAA"), rs.getString("TIPOA"), rs.getString("CODIGOB"), rs.getString("SISTEMAB"), rs.getString("TIPOB"), "", ""
 			));
 	}
 	

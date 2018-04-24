@@ -75,12 +75,14 @@ public class FicheroExcel17042018Impl implements RepositorioFicheroExcel {
 								List<CodigoCPT> codigos = repositorioINFO33.consultaCPT(cell.getStringCellValue());
 								if (codigos.size()>0) {
 									datosCorrelacion.setDescripcion(codigos.get(0).getDescripcion());
+									datosCorrelacion.setCodigoA(codigos.get(0).getId().toString());
 								}
 							}else if(cell.getCellType() == Cell.CELL_TYPE_NUMERIC) {
 								//System.out.println("No es texto");
 								List<CodigoCPT> codigos = repositorioINFO33.consultaCPT((Integer.toString((int) cell.getNumericCellValue())));
 								if (codigos.size()>0) {
 									datosCorrelacion.setDescripcion(codigos.get(0).getDescripcion());
+									datosCorrelacion.setCodigoA(codigos.get(0).getId().toString());
 								}								
 							}
 							

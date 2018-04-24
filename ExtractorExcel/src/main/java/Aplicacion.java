@@ -37,6 +37,7 @@ public class Aplicacion {
 //		String codigoCPT = entradaConsola.next();
 		
 		// E:\Proyectos\IMQ\GestorPeticiones\Subversion\Correlaciones\170418.xlsx
+		// E:\Proyectos\IMQ\GestorPeticiones\Subversion\Correlaciones\ficheroCorrelaciones.xlsx
 		// 
 		// E:\Area
 		// 1703
@@ -63,9 +64,9 @@ public class Aplicacion {
 //			}
 			//servicio.generarFicherosTexto("1703");
 			
-			//servicioGenerarFichero.generarFicheroSqlCodigosB("E:\\Area\\FicherosCodigosB.sql", "103");
-			servicioGenerarFichero.generarFicheroSqlCodigosA("E:\\Area\\FicherosCodigosAA.sql", "103");
-			//servicioGenerarFichero.generarFicheroSqlCorrelaciones("E:\\Area\\FicherosCor.sql", "103");
+			servicioGenerarFichero.generarFicheroSqlCodigosB("E:\\Area\\FicherosCodigosBPRO.sql", "103");
+			servicioGenerarFichero.generarFicheroSqlCodigosA("E:\\Area\\FicherosCodigosAAPRO.sql", "103");
+			servicioGenerarFichero.generarFicheroSqlCorrelaciones("E:\\Area\\FicherosCorPRO.sql", "103");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
